@@ -1,6 +1,7 @@
 <?php
 
 
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -43,14 +44,26 @@ try {
 <div class="container">
 <h1>Events planner</h1>
 
-<div class="border border-info col-sm-6 p-3 rounded-3">
-<p>If you don't already have a table for records, you can create one right now</p>
-<button id="checkTableButton" class="btn btn-info">Create Table</button>
+<div class="row">
+   <?php include 'src/views/events-table-output.php'; ?> 
 </div>
-<div class="row"><?php include 'src/views/events-table-output.php'; ?></div>
+
+<h3 class="mt-5">You can add new events here</h3>
+<div class="row mt-5">
 <div class="col-md-6">
 <?php include 'src/views/form-events.php'; ?>
 </div>
+<div class="col-sm-6 form-wrapper mt-5">
+<div class="border border-info p-3 rounded-3">
+<p>If you don't already have a table for records, you can create one right now</p>
+
+<button id="checkTableButton" class="btn btn-info">Create Table</button>
+</div>
+</div>
+
+</div>
+
+
 
 
 
@@ -95,6 +108,5 @@ try {
 
 </body>
 </html>
-
 
 

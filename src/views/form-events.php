@@ -33,7 +33,7 @@
       <label for="eventPlace" class="form-label">Event location</label>
     </div>
     <div class="form-floating mb-3">
-      <textarea class="form-control" placeholder="Leave a comment here" id="eventDescription" rows="2" style="height: 2em;"></textarea>
+      <textarea class="form-control" placeholder="Leave a comment here" id="eventDescription" style="height: 10em;"></textarea>
       <label for="eventDescription">Event details</label>
     </div>
 

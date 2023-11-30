@@ -11,16 +11,7 @@ class Event {
         private $place;
         private $title;
         private $description;
-    /*
-        public function __construct($date, $time, $place, $title, $description)
-        {
-            $this->date = $date;
-            $this->time = $time;
-            $this->place = $place;
-            $this->title = $title;
-            $this->description = $description;
-        }
-    */
+
         public function getId()
         {
             return $this->id;

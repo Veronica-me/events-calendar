@@ -2,10 +2,8 @@
 
 
 function validateForm() {
-    // Get form data
+    
     const date = document.getElementById('eventDate').value;
-   
-    // Check if the date is today or in the future
     const selectedDate = new Date(date);
 
     const controlDate = new Date();
@@ -24,8 +22,7 @@ function validateForm() {
         document.querySelector('#eventForm').addEventListener('submit', submitForm);
     }
     });
-  // Function to handle form submission
-// Function to handle form submission
+
 function submitForm(event) {
   event.preventDefault();
 
@@ -57,7 +54,6 @@ function submitForm(event) {
   });
 }
 
-// Function to fetch updated events and update the planner
 function fetchUpdatedEvents() {
   fetch(`src/Controllers/EventsOutputController.php?action=getAllEvents`)
       .then(response => response.json())
