@@ -34,6 +34,7 @@ try {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    
 
     <script src="src/scripts/main-scripts.js"></script>
     <link rel="stylesheet" href="src/styles/styles.css">
@@ -46,7 +47,7 @@ try {
 <p>If you don't already have a table for records, you can create one right now</p>
 <button id="checkTableButton" class="btn btn-info">Create Table</button>
 </div>
-
+<div class="row"><?php include 'src/views/events-table-output.php'; ?></div>
 <div class="col-md-6">
 <?php include 'src/views/form-events.php'; ?>
 </div>

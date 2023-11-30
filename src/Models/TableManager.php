@@ -13,7 +13,6 @@ class TableManager
 
         $tableName = 'event_data';
 
-        // Check if the table exists in INFORMATION_SCHEMA.TABLES
         $checkTableExists = $conn->query("
         SELECT 1
         FROM INFORMATION_SCHEMA.TABLES
@@ -21,11 +20,9 @@ class TableManager
     ");
 
         if ($checkTableExists->fetchColumn()) {
-            // Table exists
             return 'exist!';
         }
 
-        // Table doesn't exist, create it
         $createTableQuery = "
         CREATE TABLE $tableName (
             id INT IDENTITY(1,1) PRIMARY KEY,
@@ -49,24 +46,20 @@ class TableManager
 
     public static function isEventDataTableExists()
     {
-        
-    try {
-        $conn = Connection::getDBConnection();
 
-        $tableName = 'event_data';
+        try {
+            $conn = Connection::getDBConnection();
 
-        $checkTableExists = $conn->query("SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = '$tableName'");
+            $tableName = 'event_data';
 
-        // If the query executed successfully and fetched a row, the table exists
-        if ($checkTableExists->fetchColumn()) {           
-            return true;
-        } else {
-            return false;
+            $checkTableExists = $conn->query("SELECT 1 FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = '$tableName'");
+            if ($checkTableExists->fetchColumn()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (\PDOException $e) {
+            echo 'Exception: ' . $e->getMessage();
         }
-      
-    } catch (\PDOException $e) {
-        echo 'Exception: ' . $e->getMessage();
-    }
-   
     }
 }

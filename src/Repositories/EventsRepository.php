@@ -25,11 +25,20 @@ class EventsRepository
         $stmt->execute();
         return $stmt->fetch();
     }
+    
+    public function getEventsByDate($date)
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM event_data WHERE DATE_FORMAT(date, "%Y-%m-%d") = :date');
+        $stmt->bindValue(':date', $date);
+        $stmt->execute();
+        return $stmt->fetchAll();
+        
+    }
 
     public function getAll()
     {
         $stmt = $this->pdo->query('SELECT * FROM event_data');
-        return $stmt->fetch();
+        return $stmt->fetchAll();
     }
 
     public function create(Event $event)

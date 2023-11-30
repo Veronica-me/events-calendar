@@ -1,3 +1,19 @@
 body {
     background-color: rgb(194, 214, 216);
 }
+
+.day {
+    min-height: 2em;
+}
+
+.event-item {
+    position: relative;
+}
+.editEvt {
+    background: none;
+    border: none;
+    font-size:16px;
+    position: absolute;
+    top: 4px;
+    right: -14px;
+}
