@@ -71,7 +71,7 @@ class EventsRepository
     }
     
 
-    public function delete(int $eventId)
+    public function removeEvent(int $eventId)
     {
         $stmt = $this->pdo->prepare('DELETE FROM event_data WHERE id = :id');
         $stmt->bindValue(':id', $eventId);

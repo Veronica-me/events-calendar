@@ -2,7 +2,6 @@
 
 namespace EventsCalendar\Controllers;
 
-use EventsCalendar\Models\Event;
 use EventsCalendar\Repositories\EventsRepository;
 
 require_once __DIR__ . '/../../Autoloader.php';
@@ -58,18 +57,11 @@ if (isset($_GET['action'])) {
                    // error_log('Received data for updateEvent:');
                     //error_log(print_r($data, true));
 
-                    // Extract values
                     $id = $data['id'];
                     $title = $data['title'];
                     $place = $data['place'];
                     $description = $data['description'];
 
-                    /*
-                    error_log("ID: $id");
-                    error_log("Title: $title");
-                    error_log("Place: $place");
-                    error_log("Description: $description");
-*/
                     $eventsRepository = new EventsRepository();
                     $eventsRepository->updateEvent($id, $title, $place, $description);
 
@@ -81,11 +73,27 @@ if (isset($_GET['action'])) {
             } catch (\Exception $e) {
                 // Log the exception for debugging
                 error_log('Exception caught: ' . $e->getMessage());
-            
-                // Provide an error response with the exception message
                 $response['error'] = 'An error occurred: ' . $e->getMessage();
             }
             break;
+
+            case 'removeEvent':
+                
+                $json = file_get_contents('php://input');
+                $data = json_decode($json, true);
+        
+                if ($data && isset($data['id'])) {
+                    $id = $data['id'];
+        
+                    $eventsRepository = new EventsRepository();
+                    $eventsRepository->removeEvent($id);
+        
+                    $response['success'] = true;
+                } else {
+                    $response['error'] = 'Invalid data for removeEvent';
+                }
+                break;
+
         default:
             
             $response['error'] = 'Invalid action';

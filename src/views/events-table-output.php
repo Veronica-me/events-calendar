@@ -101,8 +101,24 @@
         openUpdateForm(event, eventItem);
       });
 
+      //remove btn
+
+      const removeButton = document.createElement('button');
+      removeButton.classList.add('removeEvt');
+      removeButton.id = "remove-"+ event.id;
+      removeButton.innerHTML = '<i class="fa fa-remove"></i>';
+      removeButton.addEventListener('click', function() {
+        var eventId = this.id;
+        eventId = parseInt(eventId.replace('remove-',''))
+        console.log('Remove with id:', eventId);
+        const eventToRemove = {
+          id: eventId
+        }
+        removeEvent(eventToRemove)
+      });
 
       eventItem.appendChild(editButton);
+      eventItem.appendChild(removeButton);
       eventsContainer.appendChild(eventItem);
 
     });
@@ -170,6 +186,31 @@
     },
     error: function(error) {
       console.error('Error updating event:', error);
+    }
+  });
+}
+
+function removeEvent(eventToRemove) {
+  console.log(eventToRemove);
+  $.ajax({
+    type: 'POST',
+    url: 'src/Controllers/EventsOutputController.php?action=removeEvent',
+    data: JSON.stringify(eventToRemove),
+    contentType: 'application/json',
+    dataType: 'json',
+    success: function(response) {
+      console.log('Event updated successfully:', response);
+
+      fetch(`src/Controllers/EventsOutputController.php?action=getAllEvents`)
+        .then(response => response.json())
+        .then(data => {
+          eventsData = organizeEventsByDate(data.events || []);
+          updatePlanner(); 
+        })
+        .catch(error => console.error('Error fetching events:', error));
+    },
+    error: function(error) {
+      console.error('Error removing event:', error);
     }
   });
 }

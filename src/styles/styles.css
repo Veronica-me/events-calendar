@@ -9,13 +9,19 @@ body {
 .event-item {
     position: relative;
 }
-.editEvt {
+.editEvt, .removeEvt {
     background: none;
     border: none;
     font-size:16px;
     position: absolute;
     top: 4px;
     right: -14px;
+}
+
+.removeEvt {
+    color:red;
+    top: 28px;
+    right: -12px;
 }
 
 .update-form {
